@@ -1,0 +1,17 @@
+[plugin]
+name = "window"
+version = "0.1.0"
+entry_point = "plugin:WindowPlugin"
+summary = "Opens the game window and draws the render graph."
+category = "Core"
+package = "snowdon-window"
+scope = "runtime"
+headless = false
+
+[plugin.capabilities]
+provides = ["snowdon.display", "snowdon.render_graph"]
+requires = []
+
+[plugin.dependencies]
+plugins = []
+python = []

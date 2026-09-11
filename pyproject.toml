@@ -1,0 +1,52 @@
+[project]
+name = "window"
+version = "0.1.0"
+description = "Snowdon window and renderer plugin"
+readme = "README.md"
+authors = [
+    { name = "Jake", email = "71926786+JakeMa5@users.noreply.github.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "contracts",
+    "framework",
+    "gfx",
+]
+
+[build-system]
+requires = ["uv_build>=0.12.7,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.uv.sources]
+contracts = { workspace = true, editable = true }
+framework = { workspace = true, editable = true }
+gfx = { workspace = true, editable = true }
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+src = ["src"]
+
+[tool.ruff.lint]
+select = [
+    "E", "W", "F", "I", "N", "UP", "B", "A", "C4", "SIM", "TCH",
+    "RET", "PTH", "PL", "PERF", "RUF", "ARG", "TRY", "BLE", "SLF",
+]
+ignore = [
+    "PLR0913",  # engine constructors legitimately take several tuning parameters
+    "TRY003",   # error messages are more useful inline than in exception subclasses
+]
+
+[tool.ruff.lint.flake8-type-checking]
+runtime-evaluated-decorators = ["dataclasses.dataclass"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+files = ["src"]
+mypy_path = "src"
+warn_unreachable = true
+disallow_any_explicit = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
