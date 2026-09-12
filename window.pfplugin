@@ -1,7 +1,7 @@
 [plugin]
 name = "window"
 version = "0.1.0"
-entry_point = "plugin:WindowPlugin"
+entry_point = "src.window.plugin:WindowPlugin"
 summary = "Opens the game window and draws the render graph."
 category = "Core"
 package = "snowdon-window"
