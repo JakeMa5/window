@@ -6,12 +6,16 @@ from framework import App, Stage, get_logger
 from gfx import GraphicsDevice, GraphicsError, Renderer, RenderHandlers, Window
 
 from .api import Display, RenderGraph
+from .config import WindowSection
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
 
     from framework import Frame, PluginContext
     from gfx import RenderPass, Unregister
+
+SCOPE = "runtime"
+HEADLESS = False
 
 __all__ = ["WindowPlugin"]
 
@@ -82,7 +86,7 @@ class WindowPlugin:
         self._renderer: Renderer | None = None
 
     def build(self, ctx: PluginContext) -> None:
-        settings = ctx.config.window
+        settings = ctx.config_section(WindowSection)
         window = Window(settings, max_fps=ctx.config.runtime.max_fps)
         try:
             device = GraphicsDevice(canvas=window.canvas)
